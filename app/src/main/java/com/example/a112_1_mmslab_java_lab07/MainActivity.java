@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         btn_start=findViewById(R.id.btn_start);
         sb_rabbit=findViewById(R.id.sb_rabbit);
-        sb_turtle=findViewById(R.id.sb_rabbit);
+        sb_turtle=findViewById(R.id.sb_turtle);
 
         btn_start.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -45,8 +45,10 @@ public class MainActivity extends AppCompatActivity {
     private final Handler handler=new Handler(Looper.myLooper(), new Handler.Callback() {
         @Override
         public boolean handleMessage(@NonNull Message msg) {
-            if (msg.what == 1) sb_rabbit.setProgress(progressRabbit);
-            else if (msg.what == 2) sb_rabbit.setProgress(progressTurtle);
+            if (msg.what == 1)
+                sb_rabbit.setProgress(progressRabbit);
+            else if (msg.what == 2)
+                sb_turtle.setProgress(progressTurtle);
 
             if (progressRabbit >= 100 && progressTurtle < 100) {
                 Toast.makeText(MainActivity.this, "兔子勝利", Toast.LENGTH_SHORT).show();
@@ -90,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                     }catch (InterruptedException e){
                         e.printStackTrace();
                     }
-                    progressRabbit+=1;
+                    progressTurtle+=1;
                     Message msg = new Message();
                     msg.what=2;
                     handler.sendMessage(msg);
